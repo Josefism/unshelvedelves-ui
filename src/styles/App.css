@@ -72,6 +72,16 @@ body {
     animation: gradient-animation 4s ease infinite;
     margin-right: 15px;
   }
+
+  .discount-note {
+    margin: 0 0 5px 0;
+    color: #f6f637;
+    font-weight: 700;
+  }
+
+  .discount-note em {
+    color: lawngreen;
+  }
   
   .opensea-button {
     background-color: rgb(32, 129, 226);

@@ -8,6 +8,7 @@ import Header from './components/Header';
 import ElvesBanner from './assets/ElvesBanner.png';
 import ElvesGif from './assets/UnshelvedElves-Series1.gif';
 
+const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER;
 const contractAddress = "0x02c4ab6E4DB3cCb2406885E38Fa17181B6f96247";
 const abi = contract.abi;
 
@@ -121,8 +122,8 @@ function App() {
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
         console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(2, { value: ethers.utils.parseEther("17.5") });
-        TotalPrice = 17.5;
+        let nftTxn = await nftContract.mintNFTs(2, { value: ethers.utils.parseEther("16") });
+        TotalPrice = "16";
 
         console.log("Mining ... please wait.");
         await nftTxn.wait();
@@ -152,8 +153,8 @@ function App() {
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
         console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(3, { value: ethers.utils.parseEther("22.5") });
-        TotalPrice = "22.5";
+        let nftTxn = await nftContract.mintNFTs(3, { value: ethers.utils.parseEther("21") });
+        TotalPrice = "21";
 
         console.log("Mining ... please wait.");
         await nftTxn.wait();
@@ -183,8 +184,8 @@ function App() {
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
         console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(4, { value: ethers.utils.parseEther("25") });
-        TotalPrice = "25";
+        let nftTxn = await nftContract.mintNFTs(4, { value: ethers.utils.parseEther("24") });
+        TotalPrice = "24";
 
         console.log("Mining ... please wait.");
         await nftTxn.wait();
@@ -232,6 +233,65 @@ function App() {
     }
   }
 
+  const reserveNFTHandler = async () => {
+    try {
+
+        setMineStatus('mining');
+  
+        const { ethereum } = window;
+  
+        if (ethereum) {
+          const provider = new ethers.providers.Web3Provider(ethereum);
+          const signer = provider.getSigner();
+          const nftContract = new ethers.Contract(contractAddress, abi, signer);
+  
+          console.log("Initialize reservation");
+          let nftTxn = await nftContract.reserveNFTs(10);
+
+          console.log("Mining ... please wait.");
+          await nftTxn.wait();
+  
+          console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+          setMineStatus('success');
+        } else {
+          setMineStatus('error');
+          console.log("Ethereum object does not exist.");
+        }
+      } catch (err) {
+        setMineStatus('error');
+        console.log(err);
+      }
+  }
+
+  const withdrawHandler = async () => {
+    try {
+        setMineStatus('mining');
+  
+        const { ethereum } = window;
+  
+        if (ethereum) {
+          const provider = new ethers.providers.Web3Provider(ethereum);
+          const signer = provider.getSigner();
+          const nftContract = new ethers.Contract(contractAddress, abi, signer);
+  
+          console.log("Processing Withdrawal");
+          let nftTxn = await nftContract.withdraw();
+
+          console.log("Mining ... please wait.");
+          await nftTxn.wait();
+  
+          console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+          setMineStatus('success');
+        } else {
+          setMineStatus('error');
+          console.log("Ethereum object does not exist.");
+        }
+      } catch (err) {
+        setMineStatus('error');
+        console.log(err);
+      }
+  }
+
   const aboutContent = () => {
     return (
       <div class="about-content">
@@ -257,24 +317,65 @@ function App() {
   const mintNftButtons = () => {
     return (
       <div>
+        <h2>Minting Unshelved Elves</h2>
         <p>Mint 1 to 5 elves at a time. The more you mint in a single transaction, the less you pay per-elf!</p>
+        <h3>1 Unshelved Elf @ 10 MATIC each</h3>
         <button onClick={mintOneNftHandler} className='cta-button mint-nft-button'>
-          Mint 1 Unshelved Elf (10 MATIC each)
+          Mint 1 Unshelved Elf
         </button>
+        <h3>2 Unshelved Elves @ 8 MATIC each</h3>
+        <p className='discount-note'>20% off per elf!</p>
         <button onClick={mintTwoNftHandler} className='cta-button mint-nft-button'>
-          Mint 2 Unshelved Elves (8.75 MATIC each)
+          Mint 2 Unshelved Elves
         </button>
+        <h3>3 Unshelved Elves @ 7 MATIC each</h3>
+        <p className='discount-note'>30% off per elf!</p>
         <button onClick={mintThreeNftHandler} className='cta-button mint-nft-button'>
-          Mint 3 Unshelved Elves (7.5 MATIC each)
+          Mint 3 Unshelved Elves
         </button>
+        <h3>4 Unshelved Elves @ 6 MATIC each</h3>
+        <p className='discount-note'>40% off per elf!</p>
         <button onClick={mintFourNftHandler} className='cta-button mint-nft-button'>
-          Mint 4 Unshelved Elves (6.25 MATIC each)
+          Mint 4 Unshelved Elves
         </button>
+        <h3>5 Unshelved Elves @ 5 MATIC each</h3>
+        <p className='discount-note'>50% off per elf! <em>Best Deal!</em></p>
         <button onClick={mintFiveNftHandler} className='cta-button mint-nft-button'>
-          Mint 5 Unshelved Elves (5 MATIC each)
+          Mint 5 Unshelved Elves
         </button>
       </div>
     )
+  }
+
+  const ownerButtons = () => {
+    try {
+      console.log("Owner: " + contractOwner);
+      console.log("Account: " + currentAccount);
+
+      if (contractOwner !== currentAccount) {
+        console.log("Current wallet account is not contract owner.")
+        return;
+      } else {
+        return (
+          <div>
+            <h2>
+              Contract Owner Functionality
+            </h2>
+            <p>
+              <button onClick={reserveNFTHandler} className='cta-button reserve-nft-button'>
+                Reserve 10 Elves
+              </button>
+              <button onClick={withdrawHandler} className='cta-button withdraw-button'>
+                Withdraw Balance to Owner
+              </button>
+            </p>
+          </div>
+        )      
+      }
+    } catch (err) {
+        console.log(err);
+        return;
+    }
   }
 
   useEffect(() => {
@@ -293,7 +394,7 @@ function App() {
           <Header bannerImg={ElvesBanner} />
           <div className="content">
             {aboutContent()}
-            {currentAccount && mineStatus !== 'mining' && mintNftButtons()}
+            {currentAccount && mineStatus !== 'mining' && mintNftButtons() && ownerButtons()}
             {!currentAccount && !mineStatus && connectWalletButton()}
             <div className='mine-submission'>
               {mineStatus === 'success' && <div className={mineStatus}>
