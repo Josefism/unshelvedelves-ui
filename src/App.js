@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Component } from 'react';
+import ReactDOM from 'react-dom';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { ethers } from 'ethers';
 import './styles/App.css';
 import contract from './contracts/UnshelvedElvesSeries1.json';
@@ -8,7 +10,8 @@ import Header from './components/Header';
 import ElvesBanner from './assets/ElvesBanner.png';
 import ElvesGif from './assets/UnshelvedElves-Series1.gif';
 
-const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER;
+const enviro = runtimeEnv();
+const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER || enviro.REACT_APP_UE1_CONTRACT_OWNER;
 const contractAddress = "0x02c4ab6E4DB3cCb2406885E38Fa17181B6f96247";
 const abi = contract.abi;
 
@@ -17,7 +20,20 @@ function App() {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [metamaskError, setMetamaskError] = useState(null);
   const [mineStatus, setMineStatus] = useState(null);
+  const [showModal, setShowModal] = useState(null);
   let TotalPrice = "0";
+  let showAdmin = false;
+  let reqElfData = false;
+
+  if (contractOwner === currentAccount) {
+    showAdmin = true;
+  }
+
+  if (window.location.href.indexOf("elf") > -1) {
+    let whichElf = 0;
+    let urlPart = window.location.href.split(/[\/ ]+/).pop();
+    console.log("Elf segment: " + urlPart);
+  }
 
   const checkWalletIsConnected = async () => {
 	  const { ethereum } = window;
@@ -80,6 +96,7 @@ function App() {
 
   const mintOneNftHandler = async () => { 
     try {
+      TotalPrice = "10";
 
       setMineStatus('mining');
 
@@ -92,7 +109,6 @@ function App() {
 
         console.log("Initialize payment");
         let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("10") });
-        TotalPrice = "10";
 
         console.log("Mining ... please wait.");
         await nftTxn.wait();
@@ -111,6 +127,7 @@ function App() {
 
   const mintTwoNftHandler = async () => { 
     try {
+      TotalPrice = "16";
 
       setMineStatus('mining');
 
@@ -123,7 +140,6 @@ function App() {
 
         console.log("Initialize payment");
         let nftTxn = await nftContract.mintNFTs(2, { value: ethers.utils.parseEther("16") });
-        TotalPrice = "16";
 
         console.log("Mining ... please wait.");
         await nftTxn.wait();
@@ -142,6 +158,7 @@ function App() {
 
   const mintThreeNftHandler = async () => { 
     try {
+      TotalPrice = "21";
 
       setMineStatus('mining');
       
@@ -154,7 +171,6 @@ function App() {
 
         console.log("Initialize payment");
         let nftTxn = await nftContract.mintNFTs(3, { value: ethers.utils.parseEther("21") });
-        TotalPrice = "21";
 
         console.log("Mining ... please wait.");
         await nftTxn.wait();
@@ -173,6 +189,7 @@ function App() {
 
   const mintFourNftHandler = async () => { 
     try {
+      TotalPrice = "24";
 
       setMineStatus('mining');
 
@@ -185,7 +202,6 @@ function App() {
 
         console.log("Initialize payment");
         let nftTxn = await nftContract.mintNFTs(4, { value: ethers.utils.parseEther("24") });
-        TotalPrice = "24";
 
         console.log("Mining ... please wait.");
         await nftTxn.wait();
@@ -204,6 +220,7 @@ function App() {
 
   const mintFiveNftHandler = async () => { 
     try {
+      TotalPrice = "25";
 
       setMineStatus('mining');
 
@@ -216,7 +233,6 @@ function App() {
 
         console.log("Initialize payment");
         let nftTxn = await nftContract.mintNFTs(5, { value: ethers.utils.parseEther("25") });
-        TotalPrice = "25";
 
         console.log("Mining ... please wait.");
         await nftTxn.wait();
@@ -348,34 +364,21 @@ function App() {
   }
 
   const ownerButtons = () => {
-    try {
-      console.log("Owner: " + contractOwner);
-      console.log("Account: " + currentAccount);
-
-      if (contractOwner !== currentAccount) {
-        console.log("Current wallet account is not contract owner.")
-        return;
-      } else {
-        return (
-          <div>
-            <h2>
-              Contract Owner Functionality
-            </h2>
-            <p>
-              <button onClick={reserveNFTHandler} className='cta-button reserve-nft-button'>
-                Reserve 10 Elves
-              </button>
-              <button onClick={withdrawHandler} className='cta-button withdraw-button'>
-                Withdraw Balance to Owner
-              </button>
-            </p>
-          </div>
-        )      
-      }
-    } catch (err) {
-        console.log(err);
-        return;
-    }
+    return (
+      <div>
+        <h2>
+          Contract Owner Functionality
+        </h2>
+        <p>
+          <button onClick={reserveNFTHandler} className='cta-button reserve-nft-button'>
+            Reserve 10 Elves
+          </button>
+          <button onClick={withdrawHandler} className='cta-button withdraw-button'>
+            Withdraw Balance to Owner
+          </button>
+        </p>
+      </div>
+    )      
   }
 
   useEffect(() => {
@@ -386,6 +389,39 @@ function App() {
     }
   }, [])
 
+  const modalRoot = document.getElementById('modal-root');
+
+  class Modal extends React.Component {
+    constructor(props) {
+      super(props);
+      // Create a div that we'll render the modal into. Because each
+      // Modal component has its own element, we can render multiple
+      // modal components into the modal container.
+      this.el = document.createElement('div');
+    }
+  
+    componentDidMount() {
+      // Append the element into the DOM on mount. We'll render
+      // into the modal container element (see the HTML tab).
+      modalRoot.appendChild(this.el);
+    }
+  
+    componentWillUnmount() {
+      // Remove the element from the DOM when we unmount
+      modalRoot.removeChild(this.el);
+    }
+    
+    render() {
+      // Use a portal to render the children into the element
+      return ReactDOM.createPortal(
+        // Any valid React child: JSX, strings, arrays, etc.
+        this.props.children,
+        // A DOM element
+        this.el,
+      );
+    }
+  }
+
   return (
     <Fragment>
       {metamaskError && <div className='metamask-error'>Please make sure you are connected to the Mumbai Network on Metamask!</div>}
@@ -394,7 +430,8 @@ function App() {
           <Header bannerImg={ElvesBanner} />
           <div className="content">
             {aboutContent()}
-            {currentAccount && mineStatus !== 'mining' && mintNftButtons() && ownerButtons()}
+            {currentAccount && mineStatus !== 'mining' && mintNftButtons()}
+            {showAdmin && mineStatus !== 'mining' && ownerButtons()}
             {!currentAccount && !mineStatus && connectWalletButton()}
             <div className='mine-submission'>
               {mineStatus === 'success' && <div className={mineStatus}>
@@ -416,6 +453,7 @@ function App() {
           <Footer address={contractAddress} footerImg={ElvesGif} />
         </div>
       </div>
+      <div id="modal-root"></div>
     </Fragment>
   )
 }
