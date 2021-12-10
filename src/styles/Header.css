@@ -1,13 +1,15 @@
 .heading {
-    margin: 0;
     font-size: 48px;
-    font-weight: bold;
-    margin: 10px auto;
-    margin-bottom: 0px;
+    font-weight: 700;
+    margin: 120px auto 0;
+    position: absolute;
+    width: 100%;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 0 green, -2px -2px 0 red, 0 0 10px black, 0 0 10px black;
 }
 
 .gradient-text {
-    background: -webkit-linear-gradient(-70deg,#a2facf,#64acff);
+    background: -webkit-linear-gradient(-70deg,#0ca82e,#e43232);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
