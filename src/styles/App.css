@@ -73,6 +73,10 @@ body {
     margin-right: 15px;
   }
 
+  .reserve-nft-button, .withdraw-button {
+    margin: 0 5px;
+  }
+
   .discount-note {
     margin: 0 0 5px 0;
     color: #f6f637;
@@ -81,6 +85,11 @@ body {
 
   .discount-note em {
     color: lawngreen;
+  }
+
+  #modal-root {
+    position: relative;
+    z-index: 999;
   }
   
   .opensea-button {

@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.bf461e79.chunk.css",
-    "main.js": "/static/js/main.68172bc3.chunk.js",
-    "main.js.map": "/static/js/main.68172bc3.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.8268e519.js",
-    "runtime-main.js.map": "/static/js/runtime-main.8268e519.js.map",
-    "static/js/2.bf9dc072.chunk.js": "/static/js/2.bf9dc072.chunk.js",
-    "static/js/2.bf9dc072.chunk.js.map": "/static/js/2.bf9dc072.chunk.js.map",
-    "static/js/3.f5905dca.chunk.js": "/static/js/3.f5905dca.chunk.js",
-    "static/js/3.f5905dca.chunk.js.map": "/static/js/3.f5905dca.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.bf461e79.chunk.css.map": "/static/css/main.bf461e79.chunk.css.map",
-    "static/js/2.bf9dc072.chunk.js.LICENSE.txt": "/static/js/2.bf9dc072.chunk.js.LICENSE.txt",
-    "static/media/ElvesBanner.04fb4b10.png": "/static/media/ElvesBanner.04fb4b10.png",
-    "static/media/UnshelvedElves-Series1.1d724eb5.gif": "/static/media/UnshelvedElves-Series1.1d724eb5.gif"
+    "main.css": "./static/css/main.a1677e62.chunk.css",
+    "main.js": "./static/js/main.dc5418e2.chunk.js",
+    "main.js.map": "./static/js/main.dc5418e2.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.197f71d8.js",
+    "runtime-main.js.map": "./static/js/runtime-main.197f71d8.js.map",
+    "static/js/2.508dbbf8.chunk.js": "./static/js/2.508dbbf8.chunk.js",
+    "static/js/2.508dbbf8.chunk.js.map": "./static/js/2.508dbbf8.chunk.js.map",
+    "static/js/3.56035dc6.chunk.js": "./static/js/3.56035dc6.chunk.js",
+    "static/js/3.56035dc6.chunk.js.map": "./static/js/3.56035dc6.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.a1677e62.chunk.css.map": "./static/css/main.a1677e62.chunk.css.map",
+    "static/js/2.508dbbf8.chunk.js.LICENSE.txt": "./static/js/2.508dbbf8.chunk.js.LICENSE.txt",
+    "static/media/ElvesBanner.04fb4b10.png": "./static/media/ElvesBanner.04fb4b10.png",
+    "static/media/UnshelvedElves-Series1.1d724eb5.gif": "./static/media/UnshelvedElves-Series1.1d724eb5.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.8268e519.js",
-    "static/js/2.bf9dc072.chunk.js",
-    "static/css/main.bf461e79.chunk.css",
-    "static/js/main.68172bc3.chunk.js"
+    "static/js/runtime-main.197f71d8.js",
+    "static/js/2.508dbbf8.chunk.js",
+    "static/css/main.a1677e62.chunk.css",
+    "static/js/main.dc5418e2.chunk.js"
   ]
 }
