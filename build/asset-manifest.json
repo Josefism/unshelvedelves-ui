@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "./static/css/main.2cd67e19.chunk.css",
-    "main.js": "./static/js/main.a74efcfe.chunk.js",
-    "main.js.map": "./static/js/main.a74efcfe.chunk.js.map",
+    "main.css": "./static/css/main.1ece3018.chunk.css",
+    "main.js": "./static/js/main.b9512d44.chunk.js",
+    "main.js.map": "./static/js/main.b9512d44.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.197f71d8.js",
     "runtime-main.js.map": "./static/js/runtime-main.197f71d8.js.map",
-    "static/js/2.f1f0fd0b.chunk.js": "./static/js/2.f1f0fd0b.chunk.js",
-    "static/js/2.f1f0fd0b.chunk.js.map": "./static/js/2.f1f0fd0b.chunk.js.map",
+    "static/js/2.5e61c2b1.chunk.js": "./static/js/2.5e61c2b1.chunk.js",
+    "static/js/2.5e61c2b1.chunk.js.map": "./static/js/2.5e61c2b1.chunk.js.map",
     "static/js/3.56035dc6.chunk.js": "./static/js/3.56035dc6.chunk.js",
     "static/js/3.56035dc6.chunk.js.map": "./static/js/3.56035dc6.chunk.js.map",
     "index.html": "./index.html",
-    "static/css/main.2cd67e19.chunk.css.map": "./static/css/main.2cd67e19.chunk.css.map",
-    "static/js/2.f1f0fd0b.chunk.js.LICENSE.txt": "./static/js/2.f1f0fd0b.chunk.js.LICENSE.txt",
-    "static/media/ElvesBanner.04fb4b10.png": "./static/media/ElvesBanner.04fb4b10.png",
+    "static/css/main.1ece3018.chunk.css.map": "./static/css/main.1ece3018.chunk.css.map",
+    "static/js/2.5e61c2b1.chunk.js.LICENSE.txt": "./static/js/2.5e61c2b1.chunk.js.LICENSE.txt",
+    "static/media/App.css": "./static/media/XmasSeamlessBackground.a713d3e7.png",
     "static/media/UnshelvedElves-Series1.1d724eb5.gif": "./static/media/UnshelvedElves-Series1.1d724eb5.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.197f71d8.js",
-    "static/js/2.f1f0fd0b.chunk.js",
-    "static/css/main.2cd67e19.chunk.css",
-    "static/js/main.a74efcfe.chunk.js"
+    "static/js/2.5e61c2b1.chunk.js",
+    "static/css/main.1ece3018.chunk.css",
+    "static/js/main.b9512d44.chunk.js"
   ]
 }
