@@ -10,7 +10,6 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import ElvesBanner from './assets/ElvesBanner.png';
 import ElvesGif from './assets/UnshelvedElves-Series1.gif';
-import BackgroundImg from './assets/XmasSeamlessBackground.png';
 
 const enviro = runtimeEnv();
 const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER || enviro.REACT_APP_UE1_CONTRACT_OWNER;
@@ -400,7 +399,7 @@ function Home() {
 
   return (
     <Fragment>
-      {metamaskError && <div className='metamask-error'>Please make sure you are connected to the Mumbai Network on Metamask!</div>}
+      {metamaskError && <div className='metamask-error'>Please make sure you are connected to the Polygon Network on Metamask!</div>}
       <div className="App">
         <div className="container">
           <Header bannerImg={ElvesBanner} />
