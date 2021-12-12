@@ -412,7 +412,7 @@ function Home() {
           <button onClick={withdrawHandler} className='cta-button withdraw-button'>
             Withdraw Balance to Owner
           </button>
-          <button onClick={closePresaleHandler} className='cta-button withdraw-button'>
+          <button onClick={closePresaleHandler} className='cta-button close-presale-button'>
             Close Presale
           </button>
         </p>
