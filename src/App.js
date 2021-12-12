@@ -15,7 +15,7 @@ const enviro = runtimeEnv();
 const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER || enviro.REACT_APP_UE1_CONTRACT_OWNER;
 const imgBase = process.env.REACT_APP_UE1_IMG_BASE || enviro.REACT_APP_UE1_IMG_BASE;
 const metadataBase = process.env.REACT_APP_UE1_META_BASE || enviro.REACT_APP_UE1_META_BASE;
-const contractAddress = "0x02c4ab6E4DB3cCb2406885E38Fa17181B6f96247";
+const contractAddress = "0x7B5e151ecA591318eDbf6284Fd884507A41B591c";
 const abi = contract.abi;
 
 function App() {
@@ -315,6 +315,35 @@ function Home() {
       }
   }
 
+  const closePresaleHandler = async () => {
+    try {
+        setMineStatus('mining');
+  
+        const { ethereum } = window;
+  
+        if (ethereum) {
+          const provider = new ethers.providers.Web3Provider(ethereum);
+          const signer = provider.getSigner();
+          const nftContract = new ethers.Contract(contractAddress, abi, signer);
+  
+          console.log("Closing Presale");
+          let nftTxn = await nftContract.closePresale();
+
+          console.log("Mining ... please wait.");
+          await nftTxn.wait();
+  
+          console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+          setMineStatus('presaleclosesuccess');
+        } else {
+          setMineStatus('presalecloseerror');
+          console.log("Ethereum object does not exist.");
+        }
+      } catch (err) {
+        setMineStatus('presalecloseerror');
+        console.log(err);
+      }
+  }
+
   const aboutContent = () => {
     return (
       <div class="about-content">
@@ -383,6 +412,9 @@ function Home() {
           <button onClick={withdrawHandler} className='cta-button withdraw-button'>
             Withdraw Balance to Owner
           </button>
+          <button onClick={closePresaleHandler} className='cta-button withdraw-button'>
+            Close Presale
+          </button>
         </p>
       </div>
     )      
@@ -419,6 +451,9 @@ function Home() {
               {mineStatus === 'withdrawsuccess' && <div className={mineStatus}>
                 <p>Withdrawal succeeded. Verify the transaction appears in MetaMask.</p>
               </div>}
+              {mineStatus === 'presaleclosesuccess' && <div className={mineStatus}>
+                <p>Presale closure succeeded. Verify the transaction appears in MetaMask.</p>
+              </div>}
               {mineStatus === 'mining' && <div className={mineStatus}>
                 <div className='loader' />
                 <span>Transaction is mining</span>
@@ -428,6 +463,9 @@ function Home() {
               </div>}
               {mineStatus === 'withdrawerror' && <div className={mineStatus}>
                 <p>Withdrawal failed. No funds to withdraw at this time.</p>
+              </div>}
+              {mineStatus === 'presalecloseerror' && <div className={mineStatus}>
+                <p>Presale closure failed. Consult contract transaction for details.</p>
               </div>}
             </div>
           </div>
