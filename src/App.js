@@ -15,7 +15,7 @@ const enviro = runtimeEnv();
 const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER || enviro.REACT_APP_UE1_CONTRACT_OWNER;
 const imgBase = process.env.REACT_APP_UE1_IMG_BASE || enviro.REACT_APP_UE1_IMG_BASE;
 const metadataBase = process.env.REACT_APP_UE1_META_BASE || enviro.REACT_APP_UE1_META_BASE;
-const contractAddress = "0x02c4ab6E4DB3cCb2406885E38Fa17181B6f96247";
+const contractAddress = "0x7B5e151ecA591318eDbf6284Fd884507A41B591c";
 const abi = contract.abi;
 
 function App() {
