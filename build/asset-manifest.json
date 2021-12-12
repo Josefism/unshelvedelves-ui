@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "./static/css/main.15aca72a.chunk.css",
-    "main.js": "./static/js/main.2c511ac3.chunk.js",
-    "main.js.map": "./static/js/main.2c511ac3.chunk.js.map",
+    "main.js": "./static/js/main.3f41ff67.chunk.js",
+    "main.js.map": "./static/js/main.3f41ff67.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.197f71d8.js",
     "runtime-main.js.map": "./static/js/runtime-main.197f71d8.js.map",
-    "static/js/2.29e35fc6.chunk.js": "./static/js/2.29e35fc6.chunk.js",
-    "static/js/2.29e35fc6.chunk.js.map": "./static/js/2.29e35fc6.chunk.js.map",
+    "static/js/2.3c6b862c.chunk.js": "./static/js/2.3c6b862c.chunk.js",
+    "static/js/2.3c6b862c.chunk.js.map": "./static/js/2.3c6b862c.chunk.js.map",
     "static/js/3.56035dc6.chunk.js": "./static/js/3.56035dc6.chunk.js",
     "static/js/3.56035dc6.chunk.js.map": "./static/js/3.56035dc6.chunk.js.map",
     "index.html": "./index.html",
     "static/css/main.15aca72a.chunk.css.map": "./static/css/main.15aca72a.chunk.css.map",
-    "static/js/2.29e35fc6.chunk.js.LICENSE.txt": "./static/js/2.29e35fc6.chunk.js.LICENSE.txt",
+    "static/js/2.3c6b862c.chunk.js.LICENSE.txt": "./static/js/2.3c6b862c.chunk.js.LICENSE.txt",
     "static/media/App.css": "./static/media/XmasSeamlessBackground.a713d3e7.png",
     "static/media/UnshelvedElves-Series1.1d724eb5.gif": "./static/media/UnshelvedElves-Series1.1d724eb5.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.197f71d8.js",
-    "static/js/2.29e35fc6.chunk.js",
+    "static/js/2.3c6b862c.chunk.js",
     "static/css/main.15aca72a.chunk.css",
-    "static/js/main.2c511ac3.chunk.js"
+    "static/js/main.3f41ff67.chunk.js"
   ]
 }

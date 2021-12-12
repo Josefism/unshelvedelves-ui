@@ -370,7 +370,10 @@ function Home() {
     return (
       <div>
         <h2>Minting Unshelved Elves</h2>
-        <p>Mint 1 to 5 elves at a time. The more you mint in a single transaction, the less you pay per-elf!</p>
+        <h3>Presale Pricing In Effect!</h3>
+        <p>Mint 1 to 5 elves at a time. During our presale, the more you mint in a single transaction, the less you pay per-elf!</p>
+        <p>When the presale is closed (on Dec 17, 2021, or when NFT supply is exhausted) any remaining NFTs will be minted and listed for sale on OpenSea for 10 MATIC each.</p>
+        <p><em>Get your <strong>Unshelved Elves</strong> before the discounted pricing is gone forever!</em></p>
         <h3>1 Unshelved Elf @ 10 MATIC each</h3>
         <button onClick={mintOneNftHandler} className='cta-button mint-nft-button'>
           Mint 1 Unshelved Elf
