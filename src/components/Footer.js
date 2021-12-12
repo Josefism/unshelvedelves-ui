@@ -6,7 +6,7 @@ function Footer(props) {
             <div className='footer-img'>
                 <img src={props.footerImg} alt='Unshelved Elves GIF' />
             </div>
-            <p>
+            <p className='contract-link-box'>
                 SMART CONTRACT ADDRESS:&nbsp;
                 <br />
                 <span>

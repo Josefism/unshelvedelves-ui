@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import ElvesBanner from './assets/ElvesBanner.png';
 import ElvesGif from './assets/UnshelvedElves-Series1.gif';
+import BackgroundImg from './assets/XmasSeamlessBackground.png';
 
 const enviro = runtimeEnv();
 const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER || enviro.REACT_APP_UE1_CONTRACT_OWNER;
@@ -403,7 +404,7 @@ function Home() {
       <div className="App">
         <div className="container">
           <Header bannerImg={ElvesBanner} />
-          <div className="content">
+          <div className="content home-content">
             {aboutContent()}
             {currentAccount && mineStatus !== 'mining' && mintNftButtons()}
             {showAdmin && mineStatus !== 'mining' && ownerButtons()}
@@ -443,8 +444,9 @@ function ElfData() {
   let { id } = useParams();
   let elfNum;
   let elfIdErr = false;
-  let imgUrl = "https://ipfs.io/ipfs/";
-  
+  let imgUrl = "https://storage.googleapis.com/unshelvedelves.assemblystudio.com/images/images/";
+  let metaUrl = "https://storage.googleapis.com/unshelvedelves.assemblystudio.com/metadata/metadata/";
+  let elfAttr = [];
 
   try {
     elfNum = parseInt(id);
@@ -460,7 +462,32 @@ function ElfData() {
       }
     }
 
-    imgUrl += imgBase + "/" + elfNum + ".png";
+    imgUrl += elfNum + ".png";
+    metaUrl += elfNum;
+
+    let elfRequest = new Request(metaUrl);
+
+    fetch(elfRequest, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Host': 'storage.googleapis.com',
+        'Content-Type': 'application/octet-stream',
+        'Access-Control-Allow-Origin': 'http://localhost:8080'
+      }
+    })
+    .then(function(response) {
+      //if (!response.ok) {
+      //  throw new Error(`HTTP error! status: ${response.status}`);
+      //}
+      console.log(response);
+      let elfData = JSON.parse(response);
+      return elfData
+    })
+    .then(function(elfData) {
+      for(var i in elfData.attributes)
+        elfAttr.push([i, elfData.attributes[i]]);
+    });
   }
   catch{
     console.log('Elfnum is not a number.');
@@ -469,22 +496,32 @@ function ElfData() {
 
   return(
     <Fragment>
-      <div>
-        <h2>
-          Unshelved Elves - Series 1
-        </h2>
-        {elfIdErr && <div><h3>Oops!</h3><p>You're looking for something that isn't one of our Elves! Go back and try again.</p></div>}
-        {!elfIdErr && <div>
-        <h3>
-          Data about Elf #{elfNum}
-        </h3>
-        <div>
-          <img src={imgUrl} alt="Unshelved Elf NFT graphic" /> 
+      <div className="App">
+        <div className="container">
+          <Header bannerImg={ElvesBanner} />
+          <div className="content">
+            {elfIdErr && <div><h2>Unshelved Elves</h2><h3>Oops!</h3><p>You're looking for something that isn't one of our Elves! <Link to="/">Go back to the homepage</Link> and try again.</p></div>}
+            {!elfIdErr && <div>
+            <div className='elf-header-block'>
+              <h2>
+                Unshelved Elves - Series 1
+              </h2>
+              <h3>
+                Data about Elf #{elfNum}
+              </h3>
+            </div>
+            <div className="elf-image-block">
+              <img className="single-elf-image" src={imgUrl} alt="Unshelved Elf NFT graphic" /> 
+            </div>
+            <div className="elf-data-block">
+              <p>
+                Please be patient as we finalize our elf data output. This section will soon contain information about the attributes of each elf.
+                {elfAttr}
+              </p>
+            </div>
+            </div>}
+          </div>
         </div>
-        <p>
-          Please be patient as we finalize our elf-data output. This link will soon show you the info about each elf.
-        </p>
-        </div>}
       </div>
     </Fragment>
   )
@@ -493,16 +530,21 @@ function ElfData() {
 function NotFound() {
   return(
     <Fragment>
-      <div>
-        <h2>
-          Unshelved Elves
-        </h2>
-        <h3>
-          Not Found
-        </h3>
-        <p>
-          It appears you're looking for elves in the wrong place. You might want to go back one page and get on the right track.
-        </p>
+      <div className="App">
+        <div className="container">
+          <Header bannerImg={ElvesBanner} />
+          <div className="content">
+            <h2>
+              Unshelved Elves
+            </h2>
+            <h3>
+              Elf Not Found!
+            </h3>
+            <p>
+              It appears you're looking for elves in the wrong place. You might want to <Link to="/">go back to the homepage</Link> and get on the right track.
+            </p>
+          </div>
+        </div>
       </div>
     </Fragment>
   )
