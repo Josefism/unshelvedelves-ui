@@ -315,6 +315,35 @@ function Home() {
       }
   }
 
+  const closePresaleHandler = async () => {
+    try {
+        setMineStatus('mining');
+  
+        const { ethereum } = window;
+  
+        if (ethereum) {
+          const provider = new ethers.providers.Web3Provider(ethereum);
+          const signer = provider.getSigner();
+          const nftContract = new ethers.Contract(contractAddress, abi, signer);
+  
+          console.log("Closing Presale");
+          let nftTxn = await nftContract.closePresale();
+
+          console.log("Mining ... please wait.");
+          await nftTxn.wait();
+  
+          console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+          setMineStatus('presaleclosesuccess');
+        } else {
+          setMineStatus('presalecloseerror');
+          console.log("Ethereum object does not exist.");
+        }
+      } catch (err) {
+        setMineStatus('presalecloseerror');
+        console.log(err);
+      }
+  }
+
   const aboutContent = () => {
     return (
       <div class="about-content">
@@ -383,6 +412,9 @@ function Home() {
           <button onClick={withdrawHandler} className='cta-button withdraw-button'>
             Withdraw Balance to Owner
           </button>
+          <button onClick={closePresaleHandler} className='cta-button withdraw-button'>
+            Close Presale
+          </button>
         </p>
       </div>
     )      
@@ -419,6 +451,9 @@ function Home() {
               {mineStatus === 'withdrawsuccess' && <div className={mineStatus}>
                 <p>Withdrawal succeeded. Verify the transaction appears in MetaMask.</p>
               </div>}
+              {mineStatus === 'presaleclosesuccess' && <div className={mineStatus}>
+                <p>Presale closure succeeded. Verify the transaction appears in MetaMask.</p>
+              </div>}
               {mineStatus === 'mining' && <div className={mineStatus}>
                 <div className='loader' />
                 <span>Transaction is mining</span>
@@ -428,6 +463,9 @@ function Home() {
               </div>}
               {mineStatus === 'withdrawerror' && <div className={mineStatus}>
                 <p>Withdrawal failed. No funds to withdraw at this time.</p>
+              </div>}
+              {mineStatus === 'presalecloseerror' && <div className={mineStatus}>
+                <p>Presale closure failed. Consult contract transaction for details.</p>
               </div>}
             </div>
           </div>
