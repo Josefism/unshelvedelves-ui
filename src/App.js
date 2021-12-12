@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Component } from 'react';
 import ReactDOM from 'react-dom';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from "react-router-dom";
 import { ethers } from 'ethers';
 import './styles/App.css';
 import contract from './contracts/UnshelvedElvesSeries1.json';
@@ -12,27 +13,33 @@ import ElvesGif from './assets/UnshelvedElves-Series1.gif';
 
 const enviro = runtimeEnv();
 const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER || enviro.REACT_APP_UE1_CONTRACT_OWNER;
+const imgBase = process.env.REACT_APP_UE1_IMG_BASE || enviro.REACT_APP_UE1_IMG_BASE;
+const metadataBase = process.env.REACT_APP_UE1_META_BASE || enviro.REACT_APP_UE1_META_BASE;
 const contractAddress = "0x02c4ab6E4DB3cCb2406885E38Fa17181B6f96247";
 const abi = contract.abi;
 
 function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route path='/elf' element={<Home />} />
+        <Route path='/elf/:id' element={<ElfData />} />
+        <Route path="*" element={<NotFound/>} />
+      </Routes>
+    </Router>
+  )
+}
 
+function Home() {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [metamaskError, setMetamaskError] = useState(null);
   const [mineStatus, setMineStatus] = useState(null);
-  const [showModal, setShowModal] = useState(null);
   let TotalPrice = "0";
   let showAdmin = false;
-  let reqElfData = false;
 
   if (contractOwner === currentAccount) {
     showAdmin = true;
-  }
-
-  if (window.location.href.indexOf("elf") > -1) {
-    let whichElf = 0;
-    let urlPart = window.location.href.split(/[\/ ]+/).pop();
-    console.log("Elf segment: " + urlPart);
   }
 
   const checkWalletIsConnected = async () => {
@@ -297,13 +304,13 @@ function App() {
           await nftTxn.wait();
   
           console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
-          setMineStatus('success');
+          setMineStatus('withdrawsuccess');
         } else {
-          setMineStatus('error');
+          setMineStatus('withdrawerror');
           console.log("Ethereum object does not exist.");
         }
       } catch (err) {
-        setMineStatus('error');
+        setMineStatus('withdrawerror');
         console.log(err);
       }
   }
@@ -389,38 +396,6 @@ function App() {
     }
   }, [])
 
-  const modalRoot = document.getElementById('modal-root');
-
-  class Modal extends React.Component {
-    constructor(props) {
-      super(props);
-      // Create a div that we'll render the modal into. Because each
-      // Modal component has its own element, we can render multiple
-      // modal components into the modal container.
-      this.el = document.createElement('div');
-    }
-  
-    componentDidMount() {
-      // Append the element into the DOM on mount. We'll render
-      // into the modal container element (see the HTML tab).
-      modalRoot.appendChild(this.el);
-    }
-  
-    componentWillUnmount() {
-      // Remove the element from the DOM when we unmount
-      modalRoot.removeChild(this.el);
-    }
-    
-    render() {
-      // Use a portal to render the children into the element
-      return ReactDOM.createPortal(
-        // Any valid React child: JSX, strings, arrays, etc.
-        this.props.children,
-        // A DOM element
-        this.el,
-      );
-    }
-  }
 
   return (
     <Fragment>
@@ -441,6 +416,9 @@ function App() {
                   <span> to view your NFT on OpenSea.</span>
                 </p>
               </div>}
+              {mineStatus === 'withdrawsuccess' && <div className={mineStatus}>
+                <p>Withdrawal succeeded. Verify the transaction appears in MetaMask.</p>
+              </div>}
               {mineStatus === 'mining' && <div className={mineStatus}>
                 <div className='loader' />
                 <span>Transaction is mining</span>
@@ -448,12 +426,84 @@ function App() {
               {mineStatus === 'error' && <div className={mineStatus}>
                 <p>Transaction failed. Make sure you have at least {TotalPrice} Polygon MATIC in your Metamask wallet and try again.</p>
               </div>}
+              {mineStatus === 'withdrawerror' && <div className={mineStatus}>
+                <p>Withdrawal failed. No funds to withdraw at this time.</p>
+              </div>}
             </div>
           </div>
           <Footer address={contractAddress} footerImg={ElvesGif} />
         </div>
       </div>
       <div id="modal-root"></div>
+    </Fragment>
+  )
+}
+
+function ElfData() {
+  let { id } = useParams();
+  let elfNum;
+  let elfIdErr = false;
+  let imgUrl = "https://ipfs.io/ipfs/";
+  
+
+  try {
+    elfNum = parseInt(id);
+    const validId = new RegExp(/^\d{1,5}$/, 'gi');
+
+    if (!validId.test(elfNum)) {
+      console.log('Too many digits in elf num');
+      elfIdErr = true;
+    } else {
+      if (elfNum > 20000) {
+        console.log('Elfnum out of range.');
+        elfIdErr = true;
+      }
+    }
+
+    imgUrl += imgBase + "/" + elfNum + ".png";
+  }
+  catch{
+    console.log('Elfnum is not a number.');
+    elfIdErr = true;
+  }
+
+  return(
+    <Fragment>
+      <div>
+        <h2>
+          Unshelved Elves - Series 1
+        </h2>
+        {elfIdErr && <div><h3>Oops!</h3><p>You're looking for something that isn't one of our Elves! Go back and try again.</p></div>}
+        {!elfIdErr && <div>
+        <h3>
+          Data about Elf #{elfNum}
+        </h3>
+        <div>
+          <img src={imgUrl} alt="Unshelved Elf NFT graphic" /> 
+        </div>
+        <p>
+          Please be patient as we finalize our elf-data output. This link will soon show you the info about each elf.
+        </p>
+        </div>}
+      </div>
+    </Fragment>
+  )
+}
+
+function NotFound() {
+  return(
+    <Fragment>
+      <div>
+        <h2>
+          Unshelved Elves
+        </h2>
+        <h3>
+          Not Found
+        </h3>
+        <p>
+          It appears you're looking for elves in the wrong place. You might want to go back one page and get on the right track.
+        </p>
+      </div>
     </Fragment>
   )
 }
