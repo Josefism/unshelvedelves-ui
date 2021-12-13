@@ -15,7 +15,7 @@ const enviro = runtimeEnv();
 const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER || enviro.REACT_APP_UE1_CONTRACT_OWNER;
 const imgBase = process.env.REACT_APP_UE1_IMG_BASE || enviro.REACT_APP_UE1_IMG_BASE;
 const metadataBase = process.env.REACT_APP_UE1_META_BASE || enviro.REACT_APP_UE1_META_BASE;
-const contractAddress = "0x7B5e151ecA591318eDbf6284Fd884507A41B591c";
+const contractAddress = "0x73371949033B5488bAF8024749C3DdA5dD3F7C28";
 const abi = contract.abi;
 
 function App() {
@@ -346,11 +346,12 @@ function Home() {
 
   const aboutContent = () => {
     return (
-      <div class="about-content">
+      <div className="about-content">
         <p>Have you ever wondered what those ubiquitous little Christmas elves get up to throughout the year when they <em>aren't</em> wandering around your house at night and spying on your children? Obviously, they go about their normal lives doing the same things you and I do!</p>
         <p><strong>Unshelved Elves - Series 1</strong> is a collection of 20,000 Unshelved Elf NFTs living on the Polygon blockchain that imagines the elves out in the real world, living their best lives and going about their elf-business in a variety of locations.</p>
         <p>Each <em>Unshelved Elf</em> in Series 1 was generated from a Python script randomly combining elements and traits, including: 19 Locations, 3 Suit Colors, 2 Positions, 4 Skin Tones, 6 Hair Colors, and 5 Eye Types (incl. 2 Sunglasses). Some elves have one or two optional elements: 5 Masks and/or 2 Necklaces.</p>
         <p>Unshelved Elves (Series 2) is already in the works, with plans to add more locations, suit colors, overshirts, jackets, pants, shoes, and accessories! Mint your own elf today, and check back soon for more info about the next series!</p>
+        <p className="about-note"><strong>NOTE:</strong> We currently only support connections with the MetaMask wallet browser extension. If you have other wallet extensions installed in your browser, you may need to temporarily disable them in order for this app to correctly detect MetaMask.</p>
       </div>
     )
   }
@@ -372,7 +373,7 @@ function Home() {
         <h2>Minting Unshelved Elves</h2>
         <h3>Presale Pricing In Effect!</h3>
         <p>Mint 1 to 5 elves at a time. During our presale, the more you mint in a single transaction, the less you pay per-elf!</p>
-        <p>When the presale is closed (on Dec 17, 2021, or when NFT supply is exhausted) any remaining NFTs will be minted and listed for sale on OpenSea for 10 MATIC each.</p>
+        <p>When the presale is closed (on Dec 20, 2021, or when NFT supply is exhausted) any remaining NFTs will be minted and listed for sale on OpenSea for 10 MATIC each.</p>
         <p><em>Get your <strong>Unshelved Elves</strong> before the discounted pricing is gone forever!</em></p>
         <h3>1 Unshelved Elf @ 10 MATIC each</h3>
         <button onClick={mintOneNftHandler} className='cta-button mint-nft-button'>
@@ -486,6 +487,7 @@ function ElfData() {
   let elfIdErr = false;
   let imgUrl = "https://storage.googleapis.com/unshelvedelves.assemblystudio.com/images/images/";
   let metaUrl = "https://storage.googleapis.com/unshelvedelves.assemblystudio.com/metadata/metadata/";
+  let openseaElfLink = "https://testnets.opensea.io/assets/mumbai/" + contractAddress + "/";
   let elfAttr = [];
 
   try {
@@ -504,6 +506,7 @@ function ElfData() {
 
     imgUrl += elfNum + ".png";
     metaUrl += elfNum;
+    openseaElfLink += elfNum;
 
     let elfRequest = new Request(metaUrl);
 
@@ -557,6 +560,12 @@ function ElfData() {
               <p>
                 Please be patient as we finalize our elf data output. This section will soon contain information about the attributes of each elf.
                 {elfAttr}
+              </p>
+              <p>
+                In the meantime, minted elves can be viewed on OpenSea. If Unshelved Elf #{elfNum} has been minted, you can click the link below to view their info on OpenSea.
+              </p>
+              <p>
+                <a href={openseaElfLink} target="_blank" title="View this Unshelved Elf on OpenSea (if minted)">View on OpenSea (If Minted)</a>
               </p>
             </div>
             </div>}

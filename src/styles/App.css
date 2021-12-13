@@ -45,6 +45,12 @@ body {
     -o-border-image: -o-repeating-linear-gradient(45deg, #c12525 10px,#c12525 20px, #01b517 20px,#01b517 30px, #FFFFFF 50px,#FFFFFF 60px) 8 round;
     border-image: repeating-linear-gradient(45deg, #c12525 10px,#c12525 20px, #01b517 20px,#01b517 30px, #FFFFFF 50px,#FFFFFF 60px) 8 round;
   }
+
+  .about-note {
+    font-size: 20px;
+    font-style: italic;
+    color: #555555;
+  }
   
   .guide {
     font-size: 16px;
