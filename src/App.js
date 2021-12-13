@@ -15,7 +15,7 @@ const enviro = runtimeEnv();
 const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER || enviro.REACT_APP_UE1_CONTRACT_OWNER;
 const imgBase = process.env.REACT_APP_UE1_IMG_BASE || enviro.REACT_APP_UE1_IMG_BASE;
 const metadataBase = process.env.REACT_APP_UE1_META_BASE || enviro.REACT_APP_UE1_META_BASE;
-const contractAddress = "0x73371949033B5488bAF8024749C3DdA5dD3F7C28";
+const contractAddress = "0xdc7eAeCbA8A3a2C530e67D6924a4692d770915Db";
 const abi = contract.abi;
 
 function App() {
@@ -375,27 +375,33 @@ function Home() {
         <p>Mint 1 to 5 elves at a time. During our presale, the more you mint in a single transaction, the less you pay per-elf!</p>
         <p>When the presale is closed (on Dec 20, 2021, or when NFT supply is exhausted) any remaining NFTs will be minted and listed for sale on OpenSea for 10 MATIC each.</p>
         <p><em>Get your <strong>Unshelved Elves</strong> before the discounted pricing is gone forever!</em></p>
+        <p className="about-note"><strong>NOTE:</strong> Ensure you have enough additional MATIC in your connected wallet to cover gas fees prior to minting. (~ 0.01 MATIC)</p>
         <h3>1 Unshelved Elf @ 10 MATIC each</h3>
+        <p className="about-note"><strong>10 MATIC</strong> total + ~ 0.01 MATIC gas</p>
         <button onClick={mintOneNftHandler} className='cta-button mint-nft-button'>
           Mint 1 Unshelved Elf
         </button>
         <h3>2 Unshelved Elves @ 8 MATIC each</h3>
         <p className='discount-note'>20% off per elf!</p>
+        <p className="about-note"><strong>16 MATIC</strong> total + ~ 0.01 MATIC gas</p>
         <button onClick={mintTwoNftHandler} className='cta-button mint-nft-button'>
           Mint 2 Unshelved Elves
         </button>
         <h3>3 Unshelved Elves @ 7 MATIC each</h3>
         <p className='discount-note'>30% off per elf!</p>
+        <p className="about-note"><strong>21 MATIC</strong> total + ~ 0.01 MATIC gas</p>
         <button onClick={mintThreeNftHandler} className='cta-button mint-nft-button'>
           Mint 3 Unshelved Elves
         </button>
         <h3>4 Unshelved Elves @ 6 MATIC each</h3>
         <p className='discount-note'>40% off per elf!</p>
+        <p className="about-note"><strong>24 MATIC</strong> total + ~ 0.01 MATIC gas</p>
         <button onClick={mintFourNftHandler} className='cta-button mint-nft-button'>
           Mint 4 Unshelved Elves
         </button>
         <h3>5 Unshelved Elves @ 5 MATIC each</h3>
         <p className='discount-note'>50% off per elf! <em>Best Deal!</em></p>
+        <p className="about-note"><strong>25 MATIC</strong> total + ~ 0.01 MATIC gas</p>
         <button onClick={mintFiveNftHandler} className='cta-button mint-nft-button'>
           Mint 5 Unshelved Elves
         </button>
