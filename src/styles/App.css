@@ -45,6 +45,12 @@ body {
     -o-border-image: -o-repeating-linear-gradient(45deg, #c12525 10px,#c12525 20px, #01b517 20px,#01b517 30px, #FFFFFF 50px,#FFFFFF 60px) 8 round;
     border-image: repeating-linear-gradient(45deg, #c12525 10px,#c12525 20px, #01b517 20px,#01b517 30px, #FFFFFF 50px,#FFFFFF 60px) 8 round;
   }
+
+  .about-note {
+    font-size: 20px;
+    font-style: italic;
+    color: #555555;
+  }
   
   .guide {
     font-size: 16px;
@@ -92,17 +98,17 @@ body {
   }
 
   .reserve-nft-button, .withdraw-button, .close-presale-button {
-    margin: 0 5px;
+    margin: 0 5px 5px 5px;
   }
 
   .discount-note {
     margin: 0 0 5px 0;
-    color: #f6f637;
+    color: #2dda53;
     font-weight: 700;
   }
 
   .discount-note em {
-    color: lawngreen;
+    color: #fc0000;
   }
 
   .elf-header-block {
@@ -142,23 +148,6 @@ body {
     border-image: repeating-linear-gradient(45deg, #c12525 10px,#c12525 20px, #01b517 20px,#01b517 30px, #FFFFFF 50px,#FFFFFF 60px) 8 round;
   }
 
-  #modal-root {
-    position: relative;
-    z-index: 999;
-  }
-
-  .modal {
-    background-color: rgba(0,0,0,0.5);
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }  
-  
   .opensea-button {
     background-color: rgb(32, 129, 226);
   }
