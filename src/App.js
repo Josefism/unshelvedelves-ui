@@ -52,10 +52,11 @@ function Home() {
 		  console.log("Wallet exists! We're ready to go!");
 	  }
 
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
     const network = await ethereum.request({ method: 'eth_chainId' });
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
     let networkValid = false;
     let networkChainId = network.toString();
+    console.log("Network ChainId: " + networkChainId);
     if (networkChainId === '0x4' || networkChainId === '0x137' || networkChainId === '0x80001' || networkChainId === '0x13881') {
       networkValid = true;
     }
