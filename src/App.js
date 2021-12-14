@@ -15,7 +15,7 @@ const enviro = runtimeEnv();
 const contractOwner = process.env.REACT_APP_UE1_CONTRACT_OWNER || enviro.REACT_APP_UE1_CONTRACT_OWNER;
 const imgBase = process.env.REACT_APP_UE1_IMG_BASE || enviro.REACT_APP_UE1_IMG_BASE;
 const metadataBase = process.env.REACT_APP_UE1_META_BASE || enviro.REACT_APP_UE1_META_BASE;
-const contractAddress = "0xdc7eAeCbA8A3a2C530e67D6924a4692d770915Db";
+const contractAddress = "0xCC60B46D0959e326620eb0239D18055AEC86Af3A";
 const abi = contract.abi;
 
 function App() {
@@ -120,7 +120,7 @@ function Home() {
         console.log("Mining ... please wait.");
         await nftTxn.wait();
 
-        console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
         setMineStatus('success');
       } else {
         setMineStatus('error');
@@ -151,7 +151,7 @@ function Home() {
         console.log("Mining ... please wait.");
         await nftTxn.wait();
 
-        console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
         setMineStatus('success');
       } else {
         setMineStatus('error');
@@ -182,7 +182,7 @@ function Home() {
         console.log("Mining ... please wait.");
         await nftTxn.wait();
 
-        console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
         setMineStatus('success');
       } else {
         setMineStatus('error');
@@ -213,7 +213,7 @@ function Home() {
         console.log("Mining ... please wait.");
         await nftTxn.wait();
 
-        console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
         setMineStatus('success');
       } else {
         setMineStatus('error');
@@ -244,7 +244,7 @@ function Home() {
         console.log("Mining ... please wait.");
         await nftTxn.wait();
 
-        console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
         setMineStatus('success');
       } else {
         setMineStatus('error');
@@ -274,7 +274,7 @@ function Home() {
           console.log("Mining ... please wait.");
           await nftTxn.wait();
   
-          console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+          console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
           setMineStatus('success');
         } else {
           setMineStatus('error');
@@ -303,7 +303,7 @@ function Home() {
           console.log("Mining ... please wait.");
           await nftTxn.wait();
   
-          console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+          console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
           setMineStatus('withdrawsuccess');
         } else {
           setMineStatus('withdrawerror');
@@ -332,7 +332,7 @@ function Home() {
           console.log("Mining ... please wait.");
           await nftTxn.wait();
   
-          console.log(`Mined, see transaction: https://mumbai.polygonscan.com/tx/${nftTxn.hash}`);
+          console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
           setMineStatus('presaleclosesuccess');
         } else {
           setMineStatus('presalecloseerror');
@@ -454,7 +454,7 @@ function Home() {
               {mineStatus === 'success' && <div className={mineStatus}>
                 <p>NFT minting successful!</p>
                 <p className='success-link'>
-                  <a href={`https://testnets.opensea.io/${currentAccount}/`} target='_blank' rel='noreferrer'>Click here</a>
+                  <a href={`https://opensea.io/${currentAccount}/`} target='_blank' rel='noreferrer'>Click here</a>
                   <span> to view your NFT on OpenSea.</span>
                 </p>
               </div>}
@@ -493,7 +493,7 @@ function ElfData() {
   let elfIdErr = false;
   let imgUrl = "https://storage.googleapis.com/unshelvedelves.assemblystudio.com/images/images/";
   let metaUrl = "https://storage.googleapis.com/unshelvedelves.assemblystudio.com/metadata/metadata/";
-  let openseaElfLink = "https://testnets.opensea.io/assets/mumbai/" + contractAddress + "/";
+  let openseaElfLink = "https://opensea.io/assets/matic/" + contractAddress + "/";
   let elfAttr = [];
 
   try {
