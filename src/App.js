@@ -82,7 +82,7 @@ function Home() {
       const network = await ethereum.request({ method: 'eth_chainId' });
       let networkValid = false;
       let networkChainId = network.toString();
-      if (networkChainId === '0x4' || networkChainId === '0x137' || networkChainId === '0x80001' || networkChainId === '0x13881') {
+      if (networkChainId === '0x4' || networkChainId === '0x89' || networkChainId === '0x13881') {
         networkValid = true;
       }
   
@@ -353,6 +353,7 @@ function Home() {
         <p>Each <em>Unshelved Elf</em> in Series 1 was generated from a Python script randomly combining elements and traits, including: 19 Locations, 3 Suit Colors, 2 Positions, 4 Skin Tones, 6 Hair Colors, and 5 Eye Types (incl. 2 Sunglasses). Some elves have one or two optional elements: 5 Masks and/or 2 Necklaces.</p>
         <p>Unshelved Elves (Series 2) is already in the works, with plans to add more locations, suit colors, overshirts, jackets, pants, shoes, and accessories! Mint your own elf today, and check back soon for more info about the next series!</p>
         <p className="about-note"><strong>NOTE:</strong> We currently only support connections with the MetaMask wallet browser extension. If you have other wallet extensions installed in your browser, you may need to temporarily disable them in order for this app to correctly detect MetaMask.</p>
+        <p>The first 100 Unshelved Elves have been reserved for gifts, giveaways, and promotions.</p>
       </div>
     )
   }

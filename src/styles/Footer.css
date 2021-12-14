@@ -23,13 +23,19 @@
     border-image: repeating-linear-gradient(45deg, #c12525 10px,#c12525 20px, #01b517 20px,#01b517 30px, #FFFFFF 50px,#FFFFFF 60px) 8 round;
 }
 
-.footer-social-media-links {
+.social-links {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.footer-social-media-links > div {
+.credits p {
+    font-size: 20px;
+    font-style: italic;
+    color: #555555;
+}
+
+.social-links > p {
     margin: 5px 10px;
 }
 
