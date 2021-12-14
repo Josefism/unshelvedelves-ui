@@ -56,14 +56,14 @@ function Home() {
     const accounts = await ethereum.request({ method: 'eth_accounts' });
     let networkValid = false;
     let networkChainId = network.toString();
-    console.log("Network ChainId: " + networkChainId);
+    //console.log("Network ChainId: " + networkChainId);
     if (networkChainId === '0x4' || networkChainId === '0x89' || networkChainId === '0x13881') {
       networkValid = true;
     }
 
     if (accounts.length !== 0 && networkValid) {
       const account = accounts[0];
-      console.log("Found an authorized account: ", account);
+      //console.log("Found an authorized account: ", account);
       setCurrentAccount(account);
     } else {
       setMetamaskError(true);
@@ -88,7 +88,7 @@ function Home() {
   
       if (networkValid) {
         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-        console.log("Found an account! Address: ", accounts[0]);
+        //console.log("Found an account! Address: ", accounts[0]);
         setMetamaskError(null);
         setCurrentAccount(accounts[0]);
       }

@@ -27,16 +27,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 15px;
+}
+
+.social-links > p {
+    margin: 5px 10px;
 }
 
 .credits p {
     font-size: 20px;
     font-style: italic;
     color: #555555;
-}
-
-.social-links > p {
-    margin: 5px 10px;
 }
 
 .contract-link {
