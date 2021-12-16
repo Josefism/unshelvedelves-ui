@@ -276,3 +276,24 @@ body {
     color: white;
   }
   
+/* Media Queries */
+@media only screen and (max-width: 600px) {
+  .heading {
+    font-size: 25px;
+    margin: 85px auto 0;
+  }
+  .metamask-error {
+    width: unset;
+  }
+  .at-expanding-share-button[data-position=bottom-right] {
+    bottom: 30px;
+    right: 20px;
+  }
+  #at4-follow, #at4-foc {
+    right: 10px;
+  }
+  .home-content, .footer-img img, .contract-link-box {
+    border-color: crimson;
+    border-image: none;
+  }
+}
