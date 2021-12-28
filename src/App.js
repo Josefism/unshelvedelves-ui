@@ -102,161 +102,6 @@ function Home() {
     }
   }
 
-  const mintOneNftHandler = async () => { 
-    try {
-      TotalPrice = "10";
-
-      setMineStatus('mining');
-
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const nftContract = new ethers.Contract(contractAddress, abi, signer);
-
-        console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("10") });
-
-        console.log("Mining ... please wait.");
-        await nftTxn.wait();
-
-        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
-        setMineStatus('success');
-      } else {
-        setMineStatus('error');
-        console.log("Ethereum object does not exist.");
-      }
-    } catch (err) {
-      setMineStatus('error');
-      console.log(err);
-    }
-  }
-
-  const mintTwoNftHandler = async () => { 
-    try {
-      TotalPrice = "16";
-
-      setMineStatus('mining');
-
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const nftContract = new ethers.Contract(contractAddress, abi, signer);
-
-        console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(2, { value: ethers.utils.parseEther("16") });
-
-        console.log("Mining ... please wait.");
-        await nftTxn.wait();
-
-        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
-        setMineStatus('success');
-      } else {
-        setMineStatus('error');
-        console.log("Ethereum object does not exist.");
-      }
-    } catch (err) {
-      setMineStatus('error');
-      console.log(err);
-    }
-  }
-
-  const mintThreeNftHandler = async () => { 
-    try {
-      TotalPrice = "21";
-
-      setMineStatus('mining');
-      
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const nftContract = new ethers.Contract(contractAddress, abi, signer);
-
-        console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(3, { value: ethers.utils.parseEther("21") });
-
-        console.log("Mining ... please wait.");
-        await nftTxn.wait();
-
-        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
-        setMineStatus('success');
-      } else {
-        setMineStatus('error');
-        console.log("Ethereum object does not exist.");
-      }
-    } catch (err) {
-      setMineStatus('error');
-      console.log(err);
-    }
-  }
-
-  const mintFourNftHandler = async () => { 
-    try {
-      TotalPrice = "24";
-
-      setMineStatus('mining');
-
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const nftContract = new ethers.Contract(contractAddress, abi, signer);
-
-        console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(4, { value: ethers.utils.parseEther("24") });
-
-        console.log("Mining ... please wait.");
-        await nftTxn.wait();
-
-        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
-        setMineStatus('success');
-      } else {
-        setMineStatus('error');
-        console.log("Ethereum object does not exist.");
-      }
-    } catch (err) {
-      setMineStatus('error');
-      console.log(err);
-    }
-  }
-
-  const mintFiveNftHandler = async () => { 
-    try {
-      TotalPrice = "25";
-
-      setMineStatus('mining');
-
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const nftContract = new ethers.Contract(contractAddress, abi, signer);
-
-        console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(5, { value: ethers.utils.parseEther("25") });
-
-        console.log("Mining ... please wait.");
-        await nftTxn.wait();
-
-        console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
-        setMineStatus('success');
-      } else {
-        setMineStatus('error');
-        console.log("Ethereum object does not exist.");
-      }
-    } catch (err) {
-      setMineStatus('error');
-      console.log(err);
-    }
-  }
-
   const reserveNFTHandler = async () => {
     try {
 
@@ -316,35 +161,6 @@ function Home() {
       }
   }
 
-  const closePresaleHandler = async () => {
-    try {
-        setMineStatus('mining');
-  
-        const { ethereum } = window;
-  
-        if (ethereum) {
-          const provider = new ethers.providers.Web3Provider(ethereum);
-          const signer = provider.getSigner();
-          const nftContract = new ethers.Contract(contractAddress, abi, signer);
-  
-          console.log("Closing Presale");
-          let nftTxn = await nftContract.closePresale();
-
-          console.log("Mining ... please wait.");
-          await nftTxn.wait();
-  
-          console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
-          setMineStatus('presaleclosesuccess');
-        } else {
-          setMineStatus('presalecloseerror');
-          console.log("Ethereum object does not exist.");
-        }
-      } catch (err) {
-        setMineStatus('presalecloseerror');
-        console.log(err);
-      }
-  }
-
   const aboutContent = () => {
     return (
       <div className="about-content">
@@ -352,8 +168,6 @@ function Home() {
         <p><strong>Unshelved Elves - Series 1</strong> is a collection of 20,000 Unshelved Elf NFTs living on the Polygon blockchain that imagines the elves out in the real world, living their best lives and going about their elf-business in a variety of locations.</p>
         <p>Each <em>Unshelved Elf</em> in Series 1 was generated from a Python script randomly combining elements and traits, including: 19 Locations, 3 Suit Colors, 2 Positions, 4 Skin Tones, 6 Hair Colors, and 5 Eye Types (incl. 2 Sunglasses). Some elves have one or two optional elements: 5 Masks and/or 2 Necklaces.</p>
         <p>Unshelved Elves (Series 2) is already in the works, with plans to add more locations, suit colors, overshirts, jackets, pants, shoes, and accessories! Mint your own elf today, and check back soon for more info about the next series!</p>
-        <p className="about-note"><strong>NOTE:</strong> We currently only support connections with the MetaMask wallet browser extension. If you have other wallet extensions installed in your browser, you may need to temporarily disable them in order for this app to correctly detect MetaMask.</p>
-        <p>The first 100 Unshelved Elves have been reserved for gifts, giveaways, and promotions.</p>
       </div>
     )
   }
@@ -361,7 +175,7 @@ function Home() {
   const connectWalletButton = () => {
     return (
       <div>
-        <p>Connect your Metamask wallet to get started minting Unshelved Elves!</p>
+        <p>Connect your Metamask wallet to get started with Unshelved Elves!</p>
         <button onClick={connectWalletHandler} className='cta-button connect-wallet-button'>
           Connect Wallet
         </button>
@@ -372,41 +186,13 @@ function Home() {
   const mintNftButtons = () => {
     return (
       <div>
-        <h2>Minting Unshelved Elves</h2>
-        <h3>Presale Pricing In Effect!</h3>
-        <p>Mint 1 to 5 elves at a time. During our presale, the more you mint in a single transaction, the less you pay per-elf!</p>
-        <p>When the presale is closed (on Dec 20, 2021, or when NFT supply is exhausted) any remaining NFTs will be minted and listed for sale on OpenSea for 10 MATIC each.</p>
-        <p><em>Get your <strong>Unshelved Elves</strong> before the discounted pricing is gone forever!</em></p>
-        <p className="about-note"><strong>NOTE:</strong> Ensure you have enough additional MATIC in your connected wallet to cover gas fees prior to minting. (~ 0.01 MATIC)</p>
-        <h3>1 Unshelved Elf @ 10 MATIC each</h3>
-        <p className="about-note"><strong>10 MATIC</strong> total + ~ 0.01 MATIC gas</p>
-        <button onClick={mintOneNftHandler} className='cta-button mint-nft-button'>
-          Mint 1 Unshelved Elf
-        </button>
-        <h3>2 Unshelved Elves @ 8 MATIC each</h3>
-        <p className='discount-note'>20% off per elf!</p>
-        <p className="about-note"><strong>16 MATIC</strong> total + ~ 0.01 MATIC gas</p>
-        <button onClick={mintTwoNftHandler} className='cta-button mint-nft-button'>
-          Mint 2 Unshelved Elves
-        </button>
-        <h3>3 Unshelved Elves @ 7 MATIC each</h3>
-        <p className='discount-note'>30% off per elf!</p>
-        <p className="about-note"><strong>21 MATIC</strong> total + ~ 0.01 MATIC gas</p>
-        <button onClick={mintThreeNftHandler} className='cta-button mint-nft-button'>
-          Mint 3 Unshelved Elves
-        </button>
-        <h3>4 Unshelved Elves @ 6 MATIC each</h3>
-        <p className='discount-note'>40% off per elf!</p>
-        <p className="about-note"><strong>24 MATIC</strong> total + ~ 0.01 MATIC gas</p>
-        <button onClick={mintFourNftHandler} className='cta-button mint-nft-button'>
-          Mint 4 Unshelved Elves
-        </button>
-        <h3>5 Unshelved Elves @ 5 MATIC each</h3>
-        <p className='discount-note'>50% off per elf! <em>Best Deal!</em></p>
-        <p className="about-note"><strong>25 MATIC</strong> total + ~ 0.01 MATIC gas</p>
-        <button onClick={mintFiveNftHandler} className='cta-button mint-nft-button'>
-          Mint 5 Unshelved Elves
-        </button>
+        <h2>Buy Unshelved Elves</h2>
+        <h3>Find our collection on OpenSea!</h3>
+        <p>You may have missed the presale, but there's no reason you have to remain elfless!</p>
+        <p>Head over to our collection on OpenSea to grab some Unshelved Elves of your very own. Since we're on the Polygon chain, gas fees are virtually free!</p>
+        <p><a href="https://opensea.io/collection/unshelved-elves-series-1" target="_blank" rel="noreferrer">https://opensea.io/collection/unshelved-elves-series-1</a></p>
+        <p><strong>NOTE:</strong> Due to funtional constraints of listing Polygon NFTs on OpenSea (which only allows listing one item at a time on Polygon) we are still in the process of completing the minting and listing of all Unshelved Elves. As Unshelved Elves sell on OpenSea, we will continue listing remaining Elves until all are sold.</p>
+        <p>Looking for more info or have other questions not answered here? Reach out to us on Twitter for direct responses! <a href="https://twitter.com/UnshelvedElves" target="_blank" rel="noreferrer">https://twitter.com/UnshelvedElves</a></p>
       </div>
     )
   }
@@ -423,9 +209,6 @@ function Home() {
           </button>
           <button onClick={withdrawHandler} className='cta-button withdraw-button'>
             Withdraw Balance to Owner
-          </button>
-          <button onClick={closePresaleHandler} className='cta-button close-presale-button'>
-            Close Presale
           </button>
         </p>
       </div>
@@ -463,9 +246,6 @@ function Home() {
               {mineStatus === 'withdrawsuccess' && <div className={mineStatus}>
                 <p>Withdrawal succeeded. Verify the transaction appears in MetaMask.</p>
               </div>}
-              {mineStatus === 'presaleclosesuccess' && <div className={mineStatus}>
-                <p>Presale closure succeeded. Verify the transaction appears in MetaMask.</p>
-              </div>}
               {mineStatus === 'mining' && <div className={mineStatus}>
                 <div className='loader' />
                 <span>Transaction is mining</span>
@@ -475,9 +255,6 @@ function Home() {
               </div>}
               {mineStatus === 'withdrawerror' && <div className={mineStatus}>
                 <p>Withdrawal failed. No funds to withdraw at this time.</p>
-              </div>}
-              {mineStatus === 'presalecloseerror' && <div className={mineStatus}>
-                <p>Presale closure failed. Consult contract transaction for details.</p>
               </div>}
             </div>
           </div>
